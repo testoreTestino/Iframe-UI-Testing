@@ -44,21 +44,23 @@ describe('Cypress Iframe Test implementation', () => {
 
     it('Open Mss insight', () => {
 
-        cy.wait(4000);
+        cy.wait(8000);
 
         // Cypress.config('scrollBehavior',false);
-
-        cy.get(':nth-child(4) > .ant-menu-submenu-title > .ant-menu-title-content').click()
+        cy.get(':nth-child(5) > .ant-menu-submenu-title > .ant-menu-title-content').click()
+        // cy.get(':nth-child(4) > .ant-menu-submenu-title > .ant-menu-title-content').click()
         cy.contains('MMS insights').click()
         cy.get('[data-menu-id$=-insights]').should('be.visible');
+        cy.wait(8000);
     })
 
     it('Enter iframe wit', () => {
-        cy.wait(2000);
+        cy.wait(4000);
         getIframeBody().find('[data-cy="dashboardHeader"]').should('be.visible')
             // Cypress.config('scrollBehavior','top');
-            .and('have.text', 'Maintenance Stats DashboardPrint')
+            .and('have.text', 'Maintenance Status DashboardPrint')
 
+        getIframeBody().find('[data-cy="printButton"]').should('be.visible').click();
         getIframeBody().find('[data-cy="filterPanel"]').should('be.visible')
         getIframeBody().find(charElementinMmsInsights.chartsWrapper).should('be.visible').click()
 

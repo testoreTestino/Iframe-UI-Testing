@@ -29,7 +29,7 @@ describe('Test Iframe with the external dependency', () => {
 
     it('Access MMS iframe', () => {
         cy.pause();
-        cy.frameLoaded('iframe]').iframeCustom().find('iframe[id=app-mms]').iframeCustom();
+        cy.frameLoaded('iframe[id=app-mms]');
 
         cy.iframe().find('[data-cy="filterPanel"]').should('be.visible')
         cy.iframe().find('[data-cy="printButton"]').should('be.visible').click()
