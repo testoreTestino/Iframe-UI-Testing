@@ -49,17 +49,17 @@ it('play in the page',()=>{
 
     // Cypress.config('scrollBehavior',false);
 
-    cy.get(':nth-child(5) > .ant-menu-submenu-title').click()
+    cy.get(':nth-child(4) > .ant-menu-submenu-title > .ant-menu-title-content').click()
 cy.contains('MMS insights').click()
      cy.get('[data-menu-id$=-insights]').should('be.visible');
      cy.pause();
 })
 
-it('Enter iframe with blog shit',()=>{
-    cy.wait(20000);
+it('Enter iframe wit',()=>{
+    cy.wait(2000);
     getIframeBody().find('[data-cy="dashboardHeader"]').should('be.visible')
     // Cypress.config('scrollBehavior','top');
-    .and('have.text','Maintenance Status DashboardPrint')
+    .and('have.text','Maintenance Stats DashboardPrint')
 
     getIframeBody().find('[data-cy="filterPanel"]').should('be.visible')
     getIframeBody().find(charElementinMmsInsights.chartsWrapper).should('be.visible').click()

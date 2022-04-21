@@ -1,0 +1,25 @@
+{
+    "name": "cypres-iframe",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "cy:open": "cypress open",
+        "cy:run": "cypress run",
+        "wdio": "wdio run wdio.conf.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cypress": "^9.5.2"
+    },
+    "devDependencies": {
+        "@wdio/cli": "^7.19.1",
+        "@wdio/local-runner": "^7.19.1",
+        "@wdio/mocha-framework": "^7.19.1",
+        "@wdio/spec-reporter": "^7.19.1",
+        "chromedriver": "^99.0.0",
+        "cypress-iframe": "^1.0.1",
+        "wdio-chromedriver-service": "^7.3.2"
+    }
+}
