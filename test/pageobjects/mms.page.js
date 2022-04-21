@@ -15,7 +15,8 @@ class MMS extends Page {
     }
 
     get mms(){
-        return $('/html/body/div/section/aside/div/div/div[1]/ul/li[5]');
+        const el = '/html/body/div[1]/section/aside/div/div/div[1]/ul/li[5]/ul/li[3]/span'
+        return $(el);
     }
 
     get iframeElement(){
