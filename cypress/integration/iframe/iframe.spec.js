@@ -1,76 +1,74 @@
-describe('My first ifrmae',()=>{
+describe('Cypress Iframe Test implementation', () => {
 
-function verifyElementAreVisible(selectors){
-          Object.values(selectors).forEach(verifyElementToBeVisible);
+    function verifyElementAreVisible(selectors) {
+        Object.values(selectors).forEach(verifyElementToBeVisible);
     }
 
-function verifyElementToBeVisible(element){
+    function verifyElementToBeVisible(element) {
         cy.get(element).should('be.visible')
-}
-
-
-const getIframeDocument=()=>{
-return cy.get('iframe[id=app-mms]').its('0.contentDocument').should('exist')
-
-}
-
-const getIframeDocument2=()=>{
-    return  cy.get('iframe[id=printWindow]').its('0.contentDocument').should('exist')
     }
 
-const getIframeBody=()=>{
-    return getIframeDocument().its('body').should('not.be.undefined').then(cy.wrap)
-}
+    const getIframeDocument = () => {
+        return cy.get('iframe[id=app-mms]').its('0.contentDocument').should('exist')
 
-const getIframeBody2=()=>{
-    return getIframeDocument2().its('body').should('not.be.undefined').then(cy.wrap)
-}
+    }
 
-const charElementinMmsInsights ={
-    chartsWrapper:'[data-cy="printButton"]' ,
-    workOrderTrendsRow:'[data-cy="totalWOCompletedChart"]' 
-}
+    const getIframeDocument2 = () => {
+        return cy.get('iframe[id=printWindow]').its('0.contentDocument').should('exist')
+    }
 
-it('should load correct url', ()=>{
-    cy.visit('http://127.0.0.1:8181/login');
-})
+    const getIframeBody = () => {
+        return getIframeDocument().its('body').should('not.be.undefined').then(cy.wrap)
+    }
 
-it('type user and password',()=>{
-    cy.get(':nth-child(1) > .ant-col-24 > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-input-affix-wrapper').type('62702')
+    const getIframeBody2 = () => {
+        return getIframeDocument2().its('body').should('not.be.undefined').then(cy.wrap)
+    }
 
-    cy.get(':nth-child(2) > .ant-col-24 > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-input-affix-wrapper').type('IExV4T')
-    cy.get('.ant-btn').click()
-    cy.contains('Login').click({force:true})
-})
+    const charElementinMmsInsights = {
+        chartsWrapper: '[data-cy="printButton"]',
+        workOrderTrendsRow: '[data-cy="totalWOCompletedChart"]'
+    }
 
-it('play in the page',()=>{
+    it('should load correct url', () => {
+        cy.visit('http://127.0.0.1:8181/login');
+    })
 
-    cy.wait(4000);
+    it('type user and password', () => {
+        cy.get(':nth-child(1) > .ant-col-24 > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-input-affix-wrapper').type('62702')
 
-    // Cypress.config('scrollBehavior',false);
+        cy.get(':nth-child(2) > .ant-col-24 > .ant-form-item-control-input > .ant-form-item-control-input-content > .ant-input-affix-wrapper').type('IExV4T')
+        cy.get('.ant-btn').click()
+        cy.contains('Login').click({force: true})
+    })
 
-    cy.get(':nth-child(4) > .ant-menu-submenu-title > .ant-menu-title-content').click()
-cy.contains('MMS insights').click()
-     cy.get('[data-menu-id$=-insights]').should('be.visible');
-     cy.pause();
-})
+    it('Open Mss insight', () => {
 
-it('Enter iframe wit',()=>{
-    cy.wait(2000);
-    getIframeBody().find('[data-cy="dashboardHeader"]').should('be.visible')
-    // Cypress.config('scrollBehavior','top');
-    .and('have.text','Maintenance Stats DashboardPrint')
+        cy.wait(4000);
 
-    getIframeBody().find('[data-cy="filterPanel"]').should('be.visible')
-    getIframeBody().find(charElementinMmsInsights.chartsWrapper).should('be.visible').click()
+        // Cypress.config('scrollBehavior',false);
 
-    //Scrolling is a really hard concept in an iframe 
-    // cy.get('#app-mms').scrollTo('bottom')
+        cy.get(':nth-child(4) > .ant-menu-submenu-title > .ant-menu-title-content').click()
+        cy.contains('MMS insights').click()
+        cy.get('[data-menu-id$=-insights]').should('be.visible');
+    })
 
-    //Nested Iframe is Pain for a QA 
-    // cy.get('iframe[id=printWindow]').its('0.contentDocument').should('exist')
+    it('Enter iframe wit', () => {
+        cy.wait(2000);
+        getIframeBody().find('[data-cy="dashboardHeader"]').should('be.visible')
+            // Cypress.config('scrollBehavior','top');
+            .and('have.text', 'Maintenance Stats DashboardPrint')
 
-})
+        getIframeBody().find('[data-cy="filterPanel"]').should('be.visible')
+        getIframeBody().find(charElementinMmsInsights.chartsWrapper).should('be.visible').click()
+
+        //Scrolling is a really hard concept in an iframe
+        // cy.get('#app-mms').scrollTo('bottom')
+
+        //Nested Iframe is Pain for a QA
+        // cy.get('iframe[id=printWindow]').its('0.contentDocument').should('exist')
+
+    })
 })
 
 
